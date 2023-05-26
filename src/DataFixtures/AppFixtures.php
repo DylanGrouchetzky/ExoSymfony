@@ -27,6 +27,17 @@ class AppFixtures extends Fixture
         $user1
         ->setEmail('test@test.fr')
         ->setMainPicture('https://picsum.photos/seed/cat66/1600')
+        ->setNameUser('jojo')
+        ->setFirtsName('jojo')
+        ->setLastName('L\'asticot')
+        ->setRoles(['ROLE_USER']);
+        $password = $this->hash->hashPassword($user1,'test');
+        $user1->setPassword($password);
+        $manager->persist($user1);
+        
+        $user1
+        ->setEmail('test@test.fr')
+        ->setMainPicture('https://picsum.photos/seed/cat66/1600')
         ->setNameUser('Takumi')
         ->setFirtsName('Takumi')
         ->setLastName('Futfiwara')
