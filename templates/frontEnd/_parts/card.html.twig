@@ -1,0 +1,17 @@
+<div class="card mb-3">
+  <h3 class="card-header">{{place.name}}</h3>
+  <div class="card-body">
+    <p class="card-text">{{place.description}}</p>
+    <img src="{{place.documents[0].url}}" alt="" style="width:100%;object-fit:cover;">
+  </div>
+  <div class="card-body">
+    <p>Longitude: {{place.coordinateLongitude}}</p>
+    <p>Latitude: {{place.coordinateLatitude}}</p>
+    <a href="{{path('app_detail_place', {'id':place.id})}}" class="card-link"><i class="feather-eye"></i >Voir</a>
+    <a href="#" class="card-link">{{place.numberLike}} <i class="feather-heart"></i></a>
+    <a href="{{path('app_detail_list_place', {'user':place.user.id})}}" class="card-link">{{place.user.nameUser}}</a>
+  </div>
+  <div class="card-footer text-muted">
+    {{place.datePublish|date('d/m/Y')}}
+  </div>
+</div>

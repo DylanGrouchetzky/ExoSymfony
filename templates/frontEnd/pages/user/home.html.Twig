@@ -1,0 +1,55 @@
+{% extends "frontEnd/template.html.Twig" %}
+{% block title %}Espace User{% endblock %}
+{% block body %}
+    <div class="row gx-0">
+        <div class="col-12 col-lg-10 mx-auto">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-dismissible alert-success">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    <strong>Success</strong> {{message}}
+                </div>
+            {% endfor %}
+            <div class="d-flex justify-content-between align-items-center">
+                <h1>Votre liste de lieux</h1>
+                <span><a href="{{path('app_espace_user_add_place')}}" class="btn btn-danger"><i class="feather-plus"></i> Ajouter un Lieu</a></span>
+            </div>
+            {% if places|length > 0 %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nom du lieux</th>
+                            <th>Latitude</th>
+                            <th>Longitude</th>
+                            <th>Date de publication</th>
+                            <th>Date de modification</th>
+                            <th>Nombre de like</th>
+                            <th>Editer</th>
+                            <th>Supprimer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for place in places %}
+                            <tr>
+                                <td>{{place.name}}</td>
+                                <td>{{place.coordinateLatitude}}</td>
+                                <td>{{place.coordinateLongitude}}</td>
+                                <td>{{place.datePublish|date('d/m/Y')}}</td>
+                                <td>{% if place.dateModified == null %}pas de modif {% else %}{{place.dateModified|date('d/m/Y')}}{% endif %}</td>
+                                <td>{{place.numberLike}}</td>
+                                <td>
+                                    <a href="{{path('app_espace_user_edit_place',{'id':place.id})}}" class="btn btn-outline-info"><i class="feather-edit-2"></i> Editer</a>
+                                </td>
+                                <td>
+                                    <a href="{{path('app_espace_user_remove_place',{'id':place.id})}}" class="btn btn-outline-danger"><i class="feather-trash-2"></i> Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>Vous n'avez pas encore enregistrer de lieux</p>
+            {% endif %}
+            
+        </div>
+    </div>
+{% endblock %}

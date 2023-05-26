@@ -1,0 +1,35 @@
+{% extends "frontEnd/template.html.twig" %}
+{% block title %}Detail{% endblock %}
+{% block body %}
+    <div class="row gx-0">
+        <div class="col-12 col-lg-10 mx-auto">
+            <h1>Detail sur {{place.name}}</h1>
+            <div class="row gx-0">
+                <div class="col-12 col-lg-6">
+                    <img src="{{place.documents[0].url}}" alt="" style="width: 90%;object-fit:cover; height:80%!important">
+                    <div class="row my-3">
+                        {% for img in place.documents %}
+                            <div class="col-3 my-3">
+                                <img src="{{img.url}}" alt="" style="width:100%;object-fit:cover; height:6rem!important">
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 text-center">
+                    <h2>{{place.name}}</h2>
+                    <p>
+                        {{place.description}}
+                    </p>
+                    <h3>Coordonée</h3>
+                    <p>Longitude: {{place.coordinateLongitude}}</p>
+                    <p>Latitude: {{place.coordinateLatitude}}</p>
+                    <div class="d-flex align-items-center justify-content-around">
+                        <p class="badge bg-danger">Créé: {{place.datePublish|date('d/m/Y')}}</p>
+                        <p class="badge bg-danger">Modifié:  {% if place.datePublish %}Aucune {% else %}{{place.datePublish|date('d/m/Y')}}{% endif %}</p>
+                        <p class="badge bg-danger">Publié: {{place.user.nameUser}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

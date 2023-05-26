@@ -1,0 +1,17 @@
+{% extends "frontEnd/template.html.twig" %}
+{% block title %}Paramétre user{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-12 col-lg-10 mx-auto">
+            <h1>Modifier les infos</h1>
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-dismissible alert-success">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    <strong>Success</strong> {{message}}
+                </div>
+            {% endfor %}
+            {{form_start(userForm)}}
+            {{form_end(userForm)}}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "frontEnd/template.html.twig" %}
+{% block title %}Liste Lieux{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-12 col-lg-10 mx-auto">
+            <div class="d-flex align-items-center">
+                <h1 class="my-3 mx-5">Liste des lieux de {{places[0].user.nameUser}}</h1>
+                <span class="badge bg-primary">Total de {{places|length}} lieux enregistré</span>
+            </div>
+            {% if places|length > 0 %}
+                <div class="row">
+                    {% for place in places %}
+                        <div class="col-3">
+                            {% include "frontEnd/_parts/card.html.twig" with {'place':place} %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>Il n'y a pas encore de lieux enregistré</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

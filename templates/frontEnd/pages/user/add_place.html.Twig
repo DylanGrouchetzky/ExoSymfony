@@ -1,0 +1,11 @@
+{% extends "frontEnd/template.html.twig" %}
+{% block title %}Ajout d'un lieux{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-12 col-lg-10 mx-auto">
+            <h1>Ajout d'un lieux</h1>
+            {{form_start(placeForm)}}
+            {{form_end(placeForm)}}
+        </div>
+    </div>
+{% endblock %}
